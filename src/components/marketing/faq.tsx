@@ -1,14 +1,21 @@
-"use client"
+"use client";
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { useTheme } from "next-themes";
 
+// Define FAQ item props
+interface FAQItemProps {
+  question: string;
+  answer: string;
+  theme?: string;
+}
+
 export default function MinimalistFAQPage() {
   const { theme } = useTheme();
-  
-  const faqs = [
+
+  const faqs: FAQItemProps[] = [
     {
       question: "What is ATSOptimizer?",
       answer:
@@ -46,8 +53,8 @@ export default function MinimalistFAQPage() {
       <div className="max-w-3xl mx-auto">
         <h1 className="text-4xl font-bold mb-16 text-center">Frequently Asked Questions</h1>
         <div className="space-y-8">
-          {faqs.map((faq, index) => (
-            <FAQItem key={index} question={faq.question} answer={faq.answer} />
+          {faqs.map((faq) => (
+            <FAQItem key={faq.question} question={faq.question} answer={faq.answer} theme={theme} />
           ))}
         </div>
       </div>
@@ -55,8 +62,10 @@ export default function MinimalistFAQPage() {
   );
 }
 
-function FAQItem({ question, answer }) {
+// Fixed FAQItem component with explicit types
+const FAQItem: React.FC<FAQItemProps> = ({ question, answer, theme }) => {
   const [isOpen, setIsOpen] = useState(false);
+
   return (
     <div className="py-4">
       <button className="w-full text-left focus:outline-none group" onClick={() => setIsOpen(!isOpen)}>
@@ -65,7 +74,7 @@ function FAQItem({ question, answer }) {
             {question}
           </h2>
           <ChevronDown
-            className={`w-6 h-6 transition-transform duration-300 ${isOpen ? "transform rotate-180" : ""}`}
+            className={`w-6 h-6 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
           />
         </div>
       </button>
@@ -83,4 +92,6 @@ function FAQItem({ question, answer }) {
       </AnimatePresence>
     </div>
   );
-}
+};
+
+
