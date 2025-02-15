@@ -1,0 +1,45 @@
+[
+    {
+      "id": 1,
+      "name": "Modern Resume",
+      "thumbnail": "/thumbnails/modern.png",
+      "file": "/public/templates1.docx"
+    },
+    {
+        "id": 2,
+        "name": "Modern Resume",
+        "thumbnail": "/thumbnails/modern.png",
+        "file": "/public/templates2.docx"
+      },
+      {
+        "id": 3,
+        "name": "Modern Resume",
+        "thumbnail": "/thumbnails/modern.png",
+        "file": "/public/templates3.docx"
+      },
+      {
+        "id": 4,
+        "name": "Modern Resume",
+        "thumbnail": "/thumbnails/modern.png",
+        "file": "/public/templates4.docx"
+      },
+      {
+        "id": 5,
+        "name": "Modern Resume",
+        "thumbnail": "/thumbnails/modern.png",
+        "file": "/public/templates5.docx"
+      },
+      {
+        "id": 6,
+        "name": "Modern Resume",
+        "thumbnail": "/thumbnails/modern.png",
+        "file": "/public/templates6.docx"
+      },
+      {
+        "id": 7,
+        "name": "Modern Resume",
+        "thumbnail": "/thumbnails/modern.png",
+        "file": "/public/templates7.docx"
+      },
+  ]
+  
