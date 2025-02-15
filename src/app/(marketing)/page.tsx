@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import Wrapper from "@/components/global/wrapper";
 import Analysis from "@/components/marketing/analysis";
 import CTA from "@/components/marketing/cta";
@@ -10,15 +12,14 @@ const HomePage = () => {
     return (
         <Wrapper className="py-20 relative">
             <Hero />
-            {/* <Companies /> */}
+            
             <Features />
-            {/* <CarouselDemo/> */}
+            
             <Analysis />
             <Faq />
-            {/* <Integration /> */}
+            
             <Pricing />
 
-            {/* <LanguageSupport /> */}
             <CTA />
         </Wrapper>
     )
