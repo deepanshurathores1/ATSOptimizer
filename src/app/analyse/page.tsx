@@ -1,6 +1,6 @@
 import Nav2 from "@/components/marketing/Nav2";
 import Footer from "@/components/marketing/Footer";
-import { ResumeAnalyzer } from "@/components/ui/ResumeAnalyser";
+import { ResumeAnalyzer } from "@/components/ui/ResumeAnalyzer";
 
 export default function AnalyzePage() {
   return (

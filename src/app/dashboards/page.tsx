@@ -8,7 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ResumeBuilder } from "@/components/ui/ResumeBuilder";
-import { ResumeAnalyzer } from "@/components/ui/ResumeAnalyser";
+import { ResumeAnalyzer } from "@/components/ui/ResumeAnalyzer";
 import Nav2 from "@/components/marketing/Nav2";
 import Footer from "@/components/marketing/Footer";
 import { Spotlight } from "@/components/ui/spotlight-new"; // Import the Spotlight component

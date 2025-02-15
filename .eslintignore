@@ -1,0 +1,3 @@
+src/constants/fonts.ts
+src/models/resume.ts
+src/components/ui/*.tsx
