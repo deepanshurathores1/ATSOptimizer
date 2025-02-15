@@ -12,7 +12,7 @@ import {
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Navbar from "@/components/marketing/navbar"; // Import Navbar
-import Footer from "@/components/marketing/footer"; // Import Footer
+import Footer from "@/components/marketing/Footer"; // Import Footer
 
 // Skeleton Components (unchanged)
 const SkeletonOne = () => {

@@ -4,7 +4,7 @@ import { Spotlight } from "@/components/ui/spotlight-new";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Send } from "lucide-react";
-import Footer from "@/components/marketing/footer";
+import Footer from "@/components/marketing/Footer";
 import Nav2 from "@/components/marketing/Nav2";
 
 export default function ContactPage() {

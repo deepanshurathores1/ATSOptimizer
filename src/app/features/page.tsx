@@ -4,7 +4,7 @@ import Image from "next/image"
 import Container from "@/components/global/container"
 import { MagicCard } from "@/components/ui/magic-card"
 import Nav2 from "@/components/marketing/Nav2"
-import Footer from "@/components/marketing/footer";
+import Footer from "@/components/marketing/Footer";
 
 const Features = () => {
   return (

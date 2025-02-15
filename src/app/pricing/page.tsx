@@ -1,4 +1,4 @@
-import Footer from "@/components/marketing/footer";
+import Footer from "@/components/marketing/Footer";
 import Pricing from "@/components/marketing/pricing";
 import Nav2 from "@/components/marketing/Nav2";
 
