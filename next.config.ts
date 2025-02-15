@@ -16,7 +16,6 @@ module.exports = {
 
 module.exports = {
   experimental: {
-    appDir: true,
   },
   async rewrites() {
     return [

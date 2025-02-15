@@ -2,7 +2,6 @@
 
 import React, {
   useEffect,
-  useRef,
   useState,
   createContext,
   useContext,
@@ -16,6 +15,9 @@ import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import Image, { ImageProps } from "next/image";
 import { useOutsideClick } from "@/hooks/use-outside-click";
+import { useRef } from "react";
+import { RefObject } from "react"; // Add this line
+
 
 interface CarouselProps {
   items: JSX.Element[];
@@ -185,7 +187,8 @@ export const Card = ({
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [open]);
 
-  useOutsideClick(containerRef, () => handleClose());
+  useOutsideClick(containerRef as RefObject<HTMLDivElement>, () => handleClose());
+
 
   const handleOpen = () => {
     setOpen(true);
