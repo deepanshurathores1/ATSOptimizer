@@ -2,35 +2,45 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Sun, Moon, FileText, BarChart, Settings, Bell, ChevronDown, ChevronRight } from "lucide-react";
+import { Sun, Moon, FileText, BarChart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ResumeBuilder } from "@/components/ui/ResumeBuilder";
 import { ResumeAnalyzer } from "@/components/ui/ResumeAnalyzer";
 import Nav2 from "@/components/marketing/Nav2";
 import Footer from "@/components/marketing/Footer";
-import { Spotlight } from "@/components/ui/spotlight-new"; // Import the Spotlight component
+import { Spotlight } from "@/components/ui/spotlight-new";
 
 export default function DashboardPage() {
   const [user, setUser] = useState<{ name: string; email: string } | null>(null);
-  const [theme, setTheme] = useState<string>(() => localStorage.getItem("theme") || "dark");
+  const [theme, setTheme] = useState<string>("dark");
   const router = useRouter();
 
+  // Handle theme safely in useEffect to avoid localStorage SSR issues
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    if (typeof window !== "undefined") {
+      setTheme(localStorage.getItem("theme") || "dark");
+    }
+  }, []);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      document.documentElement.classList.toggle("dark", theme === "dark");
+      localStorage.setItem("theme", theme);
+    }
+  }, [theme]);
+
+  // Fetch user data and handle authentication
+  useEffect(() => {
+    const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
+
     if (!token) {
       router.push("/login");
     } else {
       fetchUserData(token);
     }
-  }, [router]);
-
-  useEffect(() => {
-    document.documentElement.classList.toggle("dark", theme === "dark");
-    localStorage.setItem("theme", theme);
-  }, [theme]);
+  }, []);
 
   const fetchUserData = async (token: string) => {
     try {
@@ -54,7 +64,7 @@ export default function DashboardPage() {
     router.push("/login");
   };
 
-  const toggleTheme = () => setTheme(theme === "light" ? "dark" : "light");
+  const toggleTheme = () => setTheme((prev) => (prev === "light" ? "dark" : "light"));
 
   if (!user) return <div className="flex items-center justify-center h-screen text-xl">Loading...</div>;
 
@@ -62,14 +72,12 @@ export default function DashboardPage() {
     <div className="flex flex-col h-screen bg-background relative overflow-hidden">
       {/* Spotlight Background */}
       <Spotlight />
-
       <Nav2 />
       <div className="flex flex-1 overflow-hidden">
         {/* Main Content */}
         <div className="flex-1 flex flex-col overflow-hidden">
-          {/* Main Content Area */}
           <main className="flex-1 overflow-auto p-8 relative z-10">
-            <div className="max-w-8xl mx-auto space-y-8"> {/* Increased width to max-w-8xl */}
+            <div className="max-w-8xl mx-auto space-y-8">
               {/* Welcome Section */}
               <div className="text-center">
                 <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
@@ -136,14 +144,14 @@ export default function DashboardPage() {
                 </TabsList>
                 <TabsContent value="builder" className="space-y-6">
                   <Card className="bg-secondary/50 backdrop-blur-sm border border-gray-800/50">
-                    <CardContent className="p-8"> {/* Increased padding */}
+                    <CardContent className="p-8">
                       <ResumeBuilder />
                     </CardContent>
                   </Card>
                 </TabsContent>
                 <TabsContent value="analyzer" className="space-y-6">
                   <Card className="bg-secondary/50 backdrop-blur-sm border border-gray-800/50">
-                    <CardContent className="p-8"> {/* Increased padding */}
+                    <CardContent className="p-8">
                       <ResumeAnalyzer />
                     </CardContent>
                   </Card>
@@ -157,7 +165,6 @@ export default function DashboardPage() {
     </div>
   );
 }
-
 
 
 

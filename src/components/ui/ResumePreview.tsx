@@ -53,57 +53,25 @@ export function ResumePreview({ data }: ResumePreviewProps) {
       sections: [
         {
           children: [
+            new Paragraph({ children: [new TextRun({ text: data.fullName, bold: true, size: 28 })] }),
             new Paragraph({
-              children: [
-                new TextRun({ text: data.fullName, bold: true, size: 28 }),
-              ],
+              children: [new TextRun({ text: `${data.email} | ${data.phone} | ${data.address}`, size: 12 })],
             }),
-            new Paragraph({
-              children: [
-                new TextRun({ text: `${data.email} | ${data.phone} | ${data.address}`, size: 12 }),
-              ],
-            }),
-            new Paragraph({
-              children: [new TextRun({ text: "Professional Summary", bold: true, size: 16 })],
-            }),
-            new Paragraph({
-              children: [new TextRun({ text: data.summary, size: 12 })],
-            }),
-            new Paragraph({
-              children: [new TextRun({ text: "Education", bold: true, size: 16 })],
-            }),
-            new Paragraph({
-              children: [
-                new TextRun({ text: `${data.degree} - ${data.college}`, size: 14 }),
-              ],
-            }),
-            new Paragraph({
-              children: [new TextRun({ text: data.education, size: 12 })],
-            }),
-            ...data.workExperience.map((exp) => [
-              new Paragraph({
-                children: [new TextRun({ text: "Work Experience", bold: true, size: 16 })],
-              }),
-              new Paragraph({
-                children: [
-                  new TextRun({ text: `${exp.position} at ${exp.company}`, bold: true, size: 14 }),
-                ],
-              }),
-              new Paragraph({
-                children: [
-                  new TextRun({ text: `${exp.from} - ${exp.to}`, size: 12 }),
-                ],
-              }),
-              new Paragraph({
-                children: [new TextRun({ text: exp.description, size: 12 })],
-              }),
-            ]),
-            new Paragraph({
-              children: [new TextRun({ text: "Skills", bold: true, size: 16 })],
-            }),
-            new Paragraph({
-              children: [new TextRun({ text: data.skills, size: 12 })],
-            }),
+            new Paragraph({ children: [new TextRun({ text: "Professional Summary", bold: true, size: 16 })] }),
+            new Paragraph({ children: [new TextRun({ text: data.summary, size: 12 })] }),
+            new Paragraph({ children: [new TextRun({ text: "Education", bold: true, size: 16 })] }),
+            new Paragraph({ children: [new TextRun({ text: `${data.degree} - ${data.college}`, size: 14 })] }),
+            new Paragraph({ children: [new TextRun({ text: data.education, size: 12 })] }),
+            new Paragraph({ children: [new TextRun({ text: "Work Experience", bold: true, size: 16 })] }),
+            ...data.workExperience.map((exp) => 
+              new Paragraph({ children: [
+                new TextRun({ text: `${exp.position} at ${exp.company}`, bold: true, size: 14 }),
+                new TextRun({ text: ` (${exp.from} - ${exp.to})`, size: 12 }),
+                new TextRun({ text: `\n${exp.description}`, size: 12 })
+              ]})
+            ),
+            new Paragraph({ children: [new TextRun({ text: "Skills", bold: true, size: 16 })] }),
+            new Paragraph({ children: [new TextRun({ text: data.skills, size: 12 })] }),
           ],
         },
       ],
@@ -116,10 +84,7 @@ export function ResumePreview({ data }: ResumePreviewProps) {
 
   return (
     <div className="space-y-4">
-      <div
-        ref={resumeRef}
-        className="w-[150mm] h-[180mm] bg-white p-8 shadow-lg relative" // Reduced canvas size
-      >
+      <div ref={resumeRef} className="w-[150mm] h-[180mm] bg-white p-8 shadow-lg relative">
         {/* Watermark */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
           <p className="text-8xl font-bold text-gray-300 opacity-30 rotate-45">
@@ -155,7 +120,7 @@ export function ResumePreview({ data }: ResumePreviewProps) {
             <h2 className="text-xl font-semibold text-gray-800 border-b-2 border-gray-300 pb-1 mb-2">
               Work Experience
             </h2>
-            {data.workExperience?.map((exp, index) => (
+            {data.workExperience.map((exp, index) => (
               <div key={index} className="mb-4">
                 <h3 className="text-lg font-semibold text-gray-800">
                   {exp.position} at {exp.company}

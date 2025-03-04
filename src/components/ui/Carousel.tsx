@@ -20,7 +20,7 @@ import { RefObject } from "react"; // Add this line
 
 
 interface CarouselProps {
-  items: JSX.Element[];
+  items: React.ReactNode[];  // Use React.ReactNode[] instead of JSX.Element[]
   initialScroll?: number;
 }
 

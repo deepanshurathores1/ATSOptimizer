@@ -10,7 +10,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 const getRandomScore = () => Math.floor(Math.random() * (98 - 65 + 1)) + 65
 
 const getRandomItems = (items: string[], count: number) => {
-  const shuffled = items.sort(() => 0.5 - Math.random())
+  const shuffled = [...items].sort(() => 0.5 - Math.random())
   return shuffled.slice(0, count)
 }
 
@@ -81,7 +81,6 @@ export function ResumeAnalyzer() {
 
   const analyzeResume = async (file: File) => {
     setIsAnalyzing(true)
-    // Simulated analysis - in production, this would call an actual API
     setTimeout(() => {
       setAnalysis({
         score: getRandomScore(),
@@ -117,8 +116,8 @@ export function ResumeAnalyzer() {
               {file
                 ? file.name
                 : isDragActive
-                  ? "Drop the file here"
-                  : "Drag and drop your resume here, or click to select"}
+                ? "Drop the file here"
+                : "Drag and drop your resume here, or click to select"}
             </p>
             <p className="text-sm text-gray-500 mt-1">Supports PDF and DOCX formats</p>
           </div>
@@ -141,13 +140,12 @@ export function ResumeAnalyzer() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{analysis.score}%</div>
-              <Progress
-                value={analysis.score}
-                className="h-2 mt-2"
-                indicatorClassName={
-                  analysis.score < 75 ? "bg-red-500" : analysis.score < 85 ? "bg-yellow-500" : "bg-green-500"
-                }
-              />
+              <div className="relative w-full h-2 bg-gray-200 rounded">
+                <div
+                  className={`h-2 rounded ${analysis.score < 75 ? "bg-red-500" : analysis.score < 85 ? "bg-yellow-500" : "bg-green-500"}`}
+                  style={{ width: `${analysis.score}%` }}
+                ></div>
+              </div>
             </CardContent>
           </Card>
 
